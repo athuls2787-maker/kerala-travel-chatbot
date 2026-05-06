@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kerala Travel Chatbot</title>
+
+<style>
+body {
+    font-family: Arial;
+    background-color: #ece5dd;
+}
+
+#chat {
+    max-width: 400px;
+    margin: auto;
+    padding: 10px;
+}
+
+p {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+}
+
+.user {
+    background-color: #dcf8c6;
+    margin-left: auto;
+    text-align: right;
+}
+
+.bot {
+    background-color: white;
+    margin-right: auto;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Kerala Travel Chatbot 🌴</h1>
+
+<input id="userInput" placeholder="Enter a place">
+<button onclick="getPlaces()">Search</button>
+
+<div id="chat"></div>
+
+<script>
+
+function getPlaces() {
+
+    let input = document.getElementById("userInput").value.toLowerCase();
+    let chat = document.getElementById("chat");
+
+    let data = {
+    "munnar": {
+        text: "Tea Gardens, Mattupetty Dam",
+        image: "https://images.unsplash.com/photo-1622308644420-b20142dc993c",
+        map: "https://www.google.com/maps?q=Munnar"
+    },
+    "kochi": {
+        text: "Fort Kochi, Marine Drive",
+        image: "https://images.unsplash.com/photo-1589307004173-3c5d7d3c5c55",
+        map: "https://www.google.com/maps?q=Kochi"
+    },
+    "alappuzha": {
+        text: "Backwaters, Houseboats",
+        image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b",
+        map: "https://www.google.com/maps?q=Alappuzha"
+    },
+    "wayanad": {
+        text: "Edakkal Caves, Hills",
+        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+        map: "https://www.google.com/maps?q=Wayanad"
+    },
+    "palakkad": {
+        text: "Malampuzha Dam, Silent Valley",
+        image: "https://images.unsplash.com/photo-1605538883669-825b3a7c6e92",
+        map: "https://www.google.com/maps?q=Palakkad"
+    }
+};
+    let userMsg = document.createElement("p");
+    userMsg.className = "user";
+    userMsg.innerHTML = "<b>You:</b> " + input;
+    chat.appendChild(userMsg);
+
+    let botMsg = document.createElement("p");
+    botMsg.className = "bot";
+    botMsg.innerHTML = "<b>Bot:</b> typing...";
+    chat.appendChild(botMsg);
+
+    setTimeout(async function() {
+
+        if(data[input]) {
+
+            let cityMap = {
+    "thiruvananthapuram": "Thiruvananthapuram,IN",
+    "kollam": "Kollam,IN",
+    "pathanamthitta": "Pathanamthitta,IN",
+    "alappuzha": "Alappuzha,IN",
+    "kottayam": "Kottayam,IN",
+    "idukki": "Idukki,IN",
+    "ernakulam": "Kochi,IN",
+    "thrissur": "Thrissur,IN",
+    "palakkad": "Palakkad,IN",
+    "malappuram": "Malappuram,IN",
+    "kozhikode": "Kozhikode,IN",
+    "wayanad": "Wayanad,IN",
+    "kannur": "Kannur,IN",
+    "kasaragod": "Kasaragod,IN",
+    "munnar": "Idukki,IN",
+    "kochi": "Kochi,IN"
+};
+
+            let weather = await getWeather(cityMap[input]);
+
+            botMsg.innerHTML = `
+                <b>Bot:</b> ${data[input].text} <br>
+                ${weather} <br>
+                <img src="${data[input].image}" width="200"><br><br>
+                <a href="${data[input].map}" target="_blank">📍 View on Map</a>
+            `;
+
+        } else {
+            botMsg.innerHTML = "<b>Bot:</b> Place not found 😢";
+        }
+
+    }, 1000);
+
+    document.getElementById("userInput").value = "";
+}
+
+// Enter key
+document.getElementById("userInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        getPlaces();
+    }
+});
+
+async function getWeather(city) {
+
+    let apiKey = "c027b03d44b63657c0da989ac260513b";
+
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    try {
+        let response = await fetch(url);
+        let data = await response.json();
+
+        if (data.cod !== 200) {
+            return "Weather not found ❌";
+        }
+
+        return `🌡️ ${data.main.temp}°C, ${data.weather[0].description}`;
+
+    } catch {
+        return "Weather not available";
+    }
+}
+
+</script>
+
+</body>
+</html>
