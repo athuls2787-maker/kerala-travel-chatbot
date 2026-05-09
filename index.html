@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Kerala Travel Chatbot</title>
+<title>Kerala Travel Chatbot 🌴</title>
 
 <style>
 body {
@@ -51,6 +51,78 @@ function getPlaces() {
     let chat = document.getElementById("chat");
 
     let data = {
+    "thiruvananthapuram": {
+        text: "Padmanabhaswamy Temple, Kovalam Beach",
+        image: "https://images.unsplash.com/photo-1593693397690-362cb9666fc2",
+        map: "https://www.google.com/maps?q=Thiruvananthapuram"
+    },
+    "kollam": {
+        text: "Ashtamudi Lake, Jatayu Earth Center",
+        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+        map: "https://www.google.com/maps?q=Kollam"
+    },
+    "pathanamthitta": {
+        text: "Sabarimala, Gavi Forest",
+        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+        map: "https://www.google.com/maps?q=Pathanamthitta"
+    },
+    "alappuzha": {
+        text: "Backwaters, Houseboats",
+        image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b",
+        map: "https://www.google.com/maps?q=Alappuzha"
+    },
+    "kottayam": {
+        text: "Kumarakom, Vembanad Lake",
+        image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+        map: "https://www.google.com/maps?q=Kottayam"
+    },
+    "idukki": {
+        text: "Idukki Dam, Hill stations",
+        image: "https://images.unsplash.com/photo-1622308644420-b20142dc993c",
+        map: "https://www.google.com/maps?q=Idukki"
+    },
+    "ernakulam": {
+        text: "Marine Drive, Lulu Mall",
+        image: "https://images.unsplash.com/photo-1589307004173-3c5d7d3c5c55",
+        map: "https://www.google.com/maps?q=Ernakulam"
+    },
+    "thrissur": {
+        text: "Athirappilly Falls, Thrissur Pooram",
+        image: "https://images.unsplash.com/photo-1627894483216-2138af692e32",
+        map: "https://www.google.com/maps?q=Thrissur"
+    },
+    "palakkad": {
+        text: "Malampuzha Dam, Silent Valley",
+        image: "https://images.unsplash.com/photo-1605538883669-825b3a7c6e92",
+        map: "https://www.google.com/maps?q=Palakkad"
+    },
+    "malappuram": {
+        text: "Nilambur, Teak Museum",
+        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+        map: "https://www.google.com/maps?q=Malappuram"
+    },
+    "kozhikode": {
+        text: "Kozhikode Beach, Beypore Port",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        map: "https://www.google.com/maps?q=Kozhikode"
+    },
+    "wayanad": {
+        text: "Edakkal Caves, Hills",
+        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+        map: "https://www.google.com/maps?q=Wayanad"
+    },
+    "kannur": {
+        text: "Muzhappilangad Beach, Fort",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        map: "https://www.google.com/maps?q=Kannur"
+    },
+    "kasaragod": {
+        text: "Bekal Fort, Beaches",
+        image: "https://images.unsplash.com/photo-1593642634367-d91a135587b5",
+        map: "https://www.google.com/maps?q=Kasaragod"
+    },
+
+    // already added places
     "munnar": {
         text: "Tea Gardens, Mattupetty Dam",
         image: "https://images.unsplash.com/photo-1622308644420-b20142dc993c",
@@ -60,21 +132,6 @@ function getPlaces() {
         text: "Fort Kochi, Marine Drive",
         image: "https://images.unsplash.com/photo-1589307004173-3c5d7d3c5c55",
         map: "https://www.google.com/maps?q=Kochi"
-    },
-    "alappuzha": {
-        text: "Backwaters, Houseboats",
-        image: "https://images.unsplash.com/photo-1593696140826-c58b021acf8b",
-        map: "https://www.google.com/maps?q=Alappuzha"
-    },
-    "wayanad": {
-        text: "Edakkal Caves, Hills",
-        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
-        map: "https://www.google.com/maps?q=Wayanad"
-    },
-    "palakkad": {
-        text: "Malampuzha Dam, Silent Valley",
-        image: "https://images.unsplash.com/photo-1605538883669-825b3a7c6e92",
-        map: "https://www.google.com/maps?q=Palakkad"
     }
 };
     let userMsg = document.createElement("p");
